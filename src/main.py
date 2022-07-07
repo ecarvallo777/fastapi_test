@@ -31,36 +31,21 @@ def get_patent(id):
     #     raise ValueError('El identificador debe ser menor o igual a 28.886.999')
     #letra1
     id= int(id)
-    letra1 = int(id/17576000)
-    if (id % 17576000) == 0:
-        letra1-=1
-    nuevo_id = id - 17576000 * letra1
-    letra1=(string.ascii_uppercase[letra1])
-        
-    #letra2
-        
-    letra2 = int(nuevo_id/676000)
-        
-    if (nuevo_id % 676000) == 0:
-        letra2-=1
-    nuevo_id = nuevo_id - 676000 * letra2
-    letra2= (string.ascii_uppercase[letra2])
-    
-    #letra3    
-         
-    letra3 = int(nuevo_id/(26000))
-    if (nuevo_id % 26000) == 0:
-        letra3-=1
-    nuevo_id = nuevo_id - 26000 *letra3
-    letra3= (string.ascii_uppercase[letra3])
-    
-    #letra4
-        
-    letra4 = int(nuevo_id/1000)
-    if (nuevo_id % 1000) == 0:
-        letra4 -=1       
-    letra4 = (string.ascii_uppercase[letra4])
-    #nums
+    var_id=id
+    # Max combinations in the first char.
+    max=17576000
+    patent=''
+    #region CHARS
+    for i in range(0,4):
+        temp = int(var_id/max)
+        if (var_id % max) == 0:
+            temp-=1
+        var_id = var_id - max * temp
+        max/=26
+        patent+=(string.ascii_uppercase[temp])
+    #endregion
+
+    #region NUMS
     nums='000'
     if id>999:
         nums = str(id)[-3:]
@@ -78,7 +63,6 @@ def get_patent(id):
             nums= '00'+nums
         elif (int(nums)<=99):
             nums= '0'+nums
-    patent = letra1+letra2+letra3+letra4+nums    
-    #print(id, patent)
-    
+    patent += nums
+    #endregion
     return {patent: id}
