@@ -21,15 +21,6 @@ def get_id(patent):
 
 @app.get("/get_patent/{id}")
 def get_patent(id):
-    # if not isinstance(id, (int, str)):
-    #     raise ValueError('El identificador debe ser un número entero y no una palabra.')
-    # if not isinstance(id, (int, float)):
-    #     raise ValueError('El identificador debe ser un número enterosk.')
-    # if id < 0:
-    #     raise ValueError('El identificador debe ser mayor o igual a cero.')
-    # if id > 28886999:
-    #     raise ValueError('El identificador debe ser menor o igual a 28.886.999')
-    #letra1
     id= int(id)
     var_id=id
     # Max combinations in the first char.
