@@ -36,3 +36,4 @@ If you need to generate an Patent based on an Id:
         this return: {"731988":"ABCD987"}
 
     
+**NOTE:** THIS VERSION COULD NOT CONSIDER UNITY TESTS AND INPUTS VERIFICATIONS :(
