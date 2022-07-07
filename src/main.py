@@ -65,4 +65,4 @@ def get_patent(id):
             nums= '0'+nums
     patent += nums
     #endregion
-    return {patent: id}
+    return {id: patent}
