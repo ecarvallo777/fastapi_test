@@ -6,33 +6,19 @@ app = FastAPI()
 
 @app.get("/get_id/{patent}")
 def get_id(patent):
-    # Verificar que: 
-    
-    # Largo de la cadena sea 7.
-    # un str de 4 primeros caracteres (A-Z) y luego 3 digitos.
-    # chars en mayús.
-    
-    #Luego de verificar la patente:
-    # ['A','A','A','A',    '0','0','0']
-    # exp_count
-    # ['6','5','4','3',    '2','1','0']
-    
-    # exp_count = 6
-    # id=1
-    # for value in patent:
-    #     if (exp_count > 2 ):
-    #         id += string.ascii_uppercase.index(value) * 10 ** exp_count
-    #     else:
-    #         id += int(value) * 10 ** exp_count
-    #     exp_count = exp_count -1
-    
-    # return {patent: id}
-    #patent = 'AAAD999'
     nums = int(patent[4:7])
-    #asciitotal = ((int(string.ascii_uppercase.index(letra4))*999) + (int(string.ascii_uppercase.index(letra3)) * 999 * 26)) + 1 
-    id = int(string.ascii_uppercase.index(patent[3]))*1000 + int(string.ascii_uppercase.index(patent[2]))*1000*26 + int(string.ascii_uppercase.index(patent[1]))*1000*676 + int(string.ascii_uppercase.index(patent[0]))*1000*17576 + 1 + nums
-    #print(string.ascii_uppercase.index('Z'))
+    chars = patent[0:4]
+    id=0
+    # Max combinations in this char.
+    max = 17576000
+    for char in chars:
+        id += int(string.ascii_uppercase.index(char))*int(max)
+        # Divide in total cases from abc combinations.
+        max/=26
+    # Add nums and 1 to finish this patron.
+    id += nums + 1
     return {patent: id}
+
 @app.get("/get_patent/{id}")
 def get_patent(id):
     # if not isinstance(id, (int, str)):
